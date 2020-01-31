@@ -3,6 +3,8 @@
  */
 package com.mariathecharmix.sd.ereservation.negocio.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,4 +73,9 @@ public class ClienteService {
 
 	}
 
+	
+	public List<Cliente> findAll(){
+		
+		return this.clienteRepository.findAll();
+	}
 }
