@@ -16,6 +16,7 @@ import com.mariathecharmix.sd.ereservation.model.Cliente;
  */
 public interface ClienteRepository extends JpaRepository<Cliente, String>{
 
+
 	/**
 	 * Definicion de metodo para buscar los clientes por su apellido
 	 * Con la clase JpaRepository
@@ -30,6 +31,5 @@ public interface ClienteRepository extends JpaRepository<Cliente, String>{
 	 * @param identificacionCli
 	 * @return
 	 */
-	public Cliente findbyIdentificacion(String identificacionCli);
-	
+	public Cliente findByIdentificacion(String identificacionCli);
 }

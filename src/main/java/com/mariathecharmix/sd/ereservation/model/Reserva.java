@@ -28,7 +28,7 @@ public class Reserva {
 	@Id
 	@GeneratedValue(generator="system-uuid")
 	@GenericGenerator(name="system-uuid", strategy = "uuid2")
-	private String idRe;
+	private String idRes;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fechaIngresoRes;

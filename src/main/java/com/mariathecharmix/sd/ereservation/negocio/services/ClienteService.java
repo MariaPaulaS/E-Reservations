@@ -64,9 +64,10 @@ public class ClienteService {
 	 * 
 	 * @param identificacionCli
 	 * @return
-	 */
+	 
+	*/
 	public Cliente findbyIdentificacion(String identificacionCli) {
-		return this.clienteRepository.findbyIdentificacion(identificacionCli);
+		return this.clienteRepository.findByIdentificacion(identificacionCli);
 
 	}
 

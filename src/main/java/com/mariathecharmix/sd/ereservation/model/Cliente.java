@@ -3,14 +3,15 @@
  */
 package com.mariathecharmix.sd.ereservation.model;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,8 +26,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="cliente")
-@NamedQuery(name="Cliente.findbyIdentificacion", query="Select c from Cliente where c.identificacionCli = ?1")
-public class Cliente {
+@NamedQuery(name="Cliente.findByIdentificacion", query="Select c from Cliente c where c.identificacionCli = ?1")
+public class Cliente{
 	
 	@Id
 	@GeneratedValue(generator="system-uuid")

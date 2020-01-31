@@ -17,7 +17,7 @@ import com.mariathecharmix.sd.ereservation.model.Reserva;
  */
 public interface ReservaRepository extends JpaRepository<Reserva, String>{
 	
-	@Query("Select r from Reserva r where r.fechaIngresoR =:fechaInicio and r.fechaSalidaR =:fechaSalidaS")
+	@Query("Select r from Reserva r where r.fechaIngresoRes =:fechaInicio and r.fechaSalidaRes =:fechaSalida")
 	public List<Reserva> find(@Param("fechaInicio") Date fechaInicio, @Param("fechaSalida") Date fechaSalida);
 
 }
