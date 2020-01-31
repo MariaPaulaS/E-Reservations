@@ -20,6 +20,11 @@ import com.mariathecharmix.sd.ereservation.model.Cliente;
 import com.mariathecharmix.sd.ereservation.negocio.services.ClienteService;
 import com.mariathecharmix.sd.ereservation.vista.resources.vo.ClienteVO;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 /**
  * Clase que representa el servicio web de cliente, que expone las operaciones
  * de la clase service
@@ -29,6 +34,7 @@ import com.mariathecharmix.sd.ereservation.vista.resources.vo.ClienteVO;
  */
 @RestController
 @RequestMapping("/api/cliente")
+@Api(tags="cliente")
 public class ClienteResource {
 
 	private final ClienteService clienteService;
@@ -40,6 +46,9 @@ public class ClienteResource {
 	}
 
 	@PostMapping
+	@ApiOperation(value="Crear cliente", notes="Servicio para crear un cliente")
+	@ApiResponses(value= {@ApiResponse(code=201, message="Cliente creado correctamente"),
+			@ApiResponse(code=400, message="Solicitud inválida")})
 	public ResponseEntity<Cliente> createCliente(@RequestBody ClienteVO clienteVO) {
 		Cliente cliente = new Cliente();
 		cliente.setNombreCli(clienteVO.getNombreCli());
@@ -54,6 +63,9 @@ public class ClienteResource {
 	}
 
 	@PutMapping("/{identificacion}")
+	@ApiOperation(value="Actualizar cliente", notes="Servicio para actualizar un cliente")
+	@ApiResponses(value= {@ApiResponse(code=201, message="Cliente actualizado correctamente"),
+			@ApiResponse(code=400, message="Solicitud inválida")})
 	public ResponseEntity<Cliente> updateCliente(@PathVariable("identificacion") String identificacion,
 			ClienteVO clienteVO) {
 		Cliente cliente = this.clienteService.findbyIdentificacion(identificacion);
@@ -77,6 +89,9 @@ public class ClienteResource {
 	}
 
 	@DeleteMapping("/{identificacion}")
+	@ApiOperation(value="Eliminar cliente", notes="Servicio para eliminar un cliente")
+	@ApiResponses(value= {@ApiResponse(code=201, message="Cliente eliminado correctamente"),
+			@ApiResponse(code=400, message="Solicitud inválida")})
 	public void removeCliente(@PathVariable("identificacion") String identificacion) {
 		Cliente cliente = this.clienteService.findbyIdentificacion(identificacion);
 
@@ -88,6 +103,9 @@ public class ClienteResource {
 	
 	
 	@GetMapping
+	@ApiOperation(value="Consultar clientes", notes="Servicio para consultar todos los clientes")
+	@ApiResponses(value= {@ApiResponse(code=201, message="Clientes consultados correctamente"),
+			@ApiResponse(code=400, message="Solicitud inválida")})
 	public ResponseEntity<List<Cliente>> findAll(){
 		
 		return ResponseEntity.ok(this.clienteService.findAll());
