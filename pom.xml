@@ -96,41 +96,42 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<plugin>
+				<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.21.0</version>
 				<configuration>
-					<images>
-						<image>mariathecharmix/${project.build.finalName}
-						</image>
-						<build>
-							<from>openjdk</from>
-							<entryPoint>java -Dspring.profiles.active=prod -jar
-								/home/maria/application/${project.build.finalName}.jar</entryPoint>
-							<assembly>
-								<baseDir>/home/maria/application/</baseDir>
-								<descriptorRef>artifact</descriptorRef>
-								<inline>
+	
+						<images>
+						<image>
+							<name>mariathecharmix/${project.build.finalName}</name>
+							<build>
+								<from>openjdk:latest</from>
+								<entryPoint>java -Dspring.profiles.active=prod -jar /home/maria/dockerImages${project.build.finalName}.jar</entryPoint>
+								<assembly>
+									<basedir>/home/maria/dockerImages</basedir>
+									<descriptorRef>artifact</descriptorRef>
+									<inline>
 									<id>assembly</id>
 									<files>
 										<file>
-											<source>target/${project.build.finalName}</source>
+											<source>target/${project.build.finalName}.jar</source>
 										</file>
 									</files>
-								</inline>
-							</assembly>
-							<tags>
-								<tag>latest</tag>
-							</tags>
-							<ports>
-								<port>8080</port>
-							</ports>
-						</build>
-						<run>
-							<namingStrategy>alias</namingStrategy>
-						</run>
-						<alias>${project.build.finalName}</alias>
+									</inline>
+								</assembly>
+								<tags>
+									<tag>latest</tag>
+								</tags>
+								<ports>
+									<port>8080</port>
+								</ports>
+							</build>
+							<run>
+								<namingStrategy>alias</namingStrategy>
+							</run>
+							<alias>{project.build.finalName}</alias>
+						</image>
 					</images>
 				</configuration>
 			</plugin>
