@@ -107,9 +107,9 @@
 							<name>mariathecharmix/${project.build.finalName}</name>
 							<build>
 								<from>openjdk:latest</from>
-								<entryPoint>java -Dspring.profiles.active=prod -jar /home/maria/dockerImages${project.build.finalName}.jar</entryPoint>
+								<entryPoint>java -Dspring.profiles.active=prod -jar /home/maria/dockerImages/${project.build.finalName}.jar</entryPoint>
 								<assembly>
-									<basedir>/home/maria/dockerImages</basedir>
+									<basedir>/home/maria/dockerImages/</basedir>
 									<descriptorRef>artifact</descriptorRef>
 									<inline>
 									<id>assembly</id>
